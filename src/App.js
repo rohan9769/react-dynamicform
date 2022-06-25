@@ -14,22 +14,32 @@ function App() {
     values[index][e.target.name] = e.target.value
     setInputFields(values)
   }
+
+  const handleAddFields = () =>{
+    setInputFields([...inputFields,{firstName : '',lastName : ''}])
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    console.log('InputFields : ' , inputFields)
+  }
+
   return (
     <div>
       <Container>
         <h1>Add New Member</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             {inputFields.map((inputField,index)=>(
               <div key={index}>
                 <label>First Name : </label>
                 <input name='firstName' type='text' placeholder='firstName' value={inputField.firstName} onChange={e => handleChangeInput(index,e)}></input>
                 <label>Last Name : </label>
                 <input name='lastName' type='text' placeholder='lastName' value={inputField.lastName} onChange={e => handleChangeInput(index,e)}></input>
-                <button type='button'>Add</button>
+                <button type='button' onClick={()=>handleAddFields()}>Add</button>
                 <button type='button'>Remove</button>
               </div>
             ))}
-            <button type='button'>Send !</button>
+            <button type='button' onClick={handleSubmit}>Send !</button>
           </form>
         </Container>
     </div>
