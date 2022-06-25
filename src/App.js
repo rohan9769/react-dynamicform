@@ -10,7 +10,9 @@ function App() {
 
   const handleChangeInput = (index , e) =>{
     console.log(index,e.target.name) // gives output 0 , firstName
-    
+    const values = [...inputFields]
+    values[index][e.target.name] = e.target.value
+    setInputFields(values)
   }
   return (
     <div>
