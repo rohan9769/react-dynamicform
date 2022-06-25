@@ -19,6 +19,12 @@ function App() {
     setInputFields([...inputFields,{firstName : '',lastName : ''}])
   }
 
+  const handleRemoveFields = (index) =>{
+    const values = [...inputFields]
+    values.splice(index,1)
+    setInputFields(values)
+  }
+
   const handleSubmit = (e) =>{
     e.preventDefault()
     console.log('InputFields : ' , inputFields)
@@ -36,7 +42,7 @@ function App() {
                 <label>Last Name : </label>
                 <input name='lastName' type='text' placeholder='lastName' value={inputField.lastName} onChange={e => handleChangeInput(index,e)}></input>
                 <button type='button' onClick={()=>handleAddFields()}>Add</button>
-                <button type='button'>Remove</button>
+                <button type='button' onClick={()=>handleRemoveFields(index)}>Remove</button>
               </div>
             ))}
             <button type='button' onClick={handleSubmit}>Send !</button>
